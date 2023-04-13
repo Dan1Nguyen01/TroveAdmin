@@ -7,8 +7,6 @@ const CuratedPlaylist = require("../../models/curatedPlaylists/curatedPlaylist")
 const {
     getAllCuratedPlaylist,
     getACuratedPlaylist,
-    createCuratedPlaylist,
-    getRandomCuratedPlaylist,
     generateCuratedPlaylists,
     updateCuratedPlaylist,
     deleteCuratedPlaylist,
@@ -18,9 +16,11 @@ router.get('/', getAllCuratedPlaylist);
 
 router.get('/:id', getACuratedPlaylist);
 
-router.post('/', createCuratedPlaylist);
+// router.post('/', createCuratedPlaylist);
 
-router.post('/trove-picks', generateCuratedPlaylists);
+// router.post('/:id', createTopUserSongsPlaylist);
+
+router.post('/:id', generateCuratedPlaylists);
 
 
 // router.post('/', generateRandomCuratedPlaylist);
