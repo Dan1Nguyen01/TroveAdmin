@@ -20,7 +20,7 @@ router.get('/:id', getACuratedPlaylist);
 
 // router.post('/:id', createTopUserSongsPlaylist);
 
-router.post('/:id', generateCuratedPlaylists);
+router.post('/', generateCuratedPlaylists);
 
 
 // router.post('/', generateRandomCuratedPlaylist);
