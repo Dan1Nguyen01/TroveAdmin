@@ -114,7 +114,7 @@ const generateCuratedPlaylists = async (req, res) => {
 
             await createTopSongsPlaylist();
 
-            await createTopArtistPlaylist();
+            //await createTopArtistPlaylist();
 
             await createRandomPopPlaylist();
 
@@ -130,14 +130,14 @@ const generateCuratedPlaylists = async (req, res) => {
             return res.status(200).send({ msg: "user not logged in, curated playlists created!" });
             // return res.status(404).send("User profile not found");
         }
-        
+
         else {
 
             await createTopUserSongsPlaylist(user)
 
             await createTopSongsPlaylist();
 
-            await createTopArtistPlaylist();
+            //await createTopArtistPlaylist();
 
             await createRandomPopPlaylist();
 
@@ -341,9 +341,9 @@ const createTopUserSongsPlaylist = async (user) => {
                 songList: songLimit,
                 isGenerated: true
             });
-    
+
             console.log("curatedPlaylist: " + curatedPlaylist);
-    
+
             await curatedPlaylist.save();
             return curatedPlaylist;
         }
@@ -484,6 +484,37 @@ const createTopArtistPlaylist = async (req, res) => {
             const currentSong = await Song.findOne({ artist: artist._id })
                 // const song = await Song.findOne({_id: {$in: artist.songList}})
                 .sort({ searchCount: -1 });
+
+            console.log("current song: " + currentSong.title);
+
+            // const songs = await Song.find({ artist: artist._id })
+            //     .populate("artist")
+            //     .populate("featuredArtists")
+            //     .populate("album")
+            //     .sort({ searchCount: -1 });
+
+            // if (!songs) {
+            //     return res.status(404).send("songs not found");
+            // }
+
+            // songs.map(async (currentSong) => {
+
+            //     console.log("current song in song.map: " + currentSong.title);
+
+            //     while (songLimit.length < 5) {
+
+            //         if (!songLimit.some((song) => song._id === currentSong._id)) {
+            //             songLimit.push(currentSong);
+            //             console.log("added song: " + currentSong.title);
+            //         }
+            //     }
+
+            //     if (songLimit.length > 5) {
+            //         throw new Error("Song limit cannot be greater than 5.");
+            //     }
+
+            // })
+
 
             while (songLimit.length < 5) {
 
