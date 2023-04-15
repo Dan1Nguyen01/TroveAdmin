@@ -20,14 +20,15 @@ const App = () => {
   const troveAdminToken = localStorage.getItem("TroveAdminToken");
   return (
     <BrowserRouter>
-      <Container fluid className="bg-secondary min-vh-100">
+      <Container fluid className="bg-dark min-vh-100">
         <Row>
           {troveAdminToken ? (
             <Col
               xs={12}
               md={2}
-              className="bg-white vh-100"
-              style={{ position: "fixed" }}
+              className="bg-light vh-100 position-fixed"
+              style={{ left: 0, top: 0 }}
+              sm={3} // Set the width to 3 columns on sm screens
             >
               <Sidebar />
             </Col>

@@ -11,6 +11,7 @@ const epRoute = require("./routes/ep-route/ep-route");
 const adminRoute = require("./routes/admin login/admin-login");
 const app = express();
 
+const config = require("./config");
 app.use(
   cors({
     origin: "http://localhost:3000",
@@ -22,7 +23,7 @@ mongoose.set("strictQuery", true);
 
 mongoose.set("strictQuery", true);
 mongoose
-  .connect(process.env.DB_URL, { useNewUrlParser: true })
+  .connect(config.DB_URL, { useNewUrlParser: true })
   .then(() => {
     console.log("Database connected");
   })
@@ -50,6 +51,6 @@ app.use("/api/curated", curatedPlaylistRoute);
 app.use("/api/artists", artistRoute);
 app.use("/api/eps", epRoute);
 
-app.listen(process.env.PORT, "0.0.0.0", () => {
-  console.log(`Listening to port`, process.env.PORT);
+app.listen(config.PORT, "0.0.0.0", () => {
+  console.log(`Listening to port`, config.PORT);
 });

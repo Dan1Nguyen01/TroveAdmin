@@ -73,7 +73,7 @@ const Admin = () => {
       }
     };
     fetchUSingles();
-  }, []);
+  }, [single.length]);
 
   const { approveAlbum, approveAlbumError, setApproveAlbumIsLoading } =
     useApproveAlbum();
@@ -94,7 +94,7 @@ const Admin = () => {
       }
     };
     fetchUAlbums();
-  }, []);
+  }, [albums.length]);
 
   const [eps, setEPs] = React.useState([]);
   const { approveEP, approveEPError, setApproveEPIsLoading } = useApproveEP();
@@ -114,7 +114,7 @@ const Admin = () => {
       }
     };
     fetchUEPs();
-  }, []);
+  }, [eps.length]);
 
   const {
     rejectSingle,
@@ -135,6 +135,27 @@ const Admin = () => {
   const [singleMessage, setSingleMessage] = React.useState("");
   const [albumMessage, setAlbumMessage] = React.useState("");
   const [epMessage, setEPMessage] = React.useState("");
+
+  const [searchTerm, setSearchTerm] = React.useState("");
+
+  const filteredSingle = single.filter(
+    (single) =>
+      single.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      single.artist.artistName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const filteredAlbums = albums.filter(
+    (album) =>
+      album.albumName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      album.artist.artistName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const epFiltered = eps.filter(
+    (ep) =>
+      ep.epName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      ep.artist.artistName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <>
       <Container>
@@ -149,18 +170,27 @@ const Admin = () => {
               </TabList>
               <TabPanel>
                 <h2>Single Songs</h2>
+                <input
+                  type="text"
+                  className="form-control mb-3"
+                  placeholder="Search by title or artist name"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
                 <table class="table table-dark table-bordered ">
                   <thead>
-                    <tr>
-                      <th scope="col">Title</th>
-                      <th scope="col">ARTIST</th>
-                      <th scope="col">IMG</th>
-                      <th scope="col">Approve</th>
-                      <th scope="col">Reject</th>
-                    </tr>
+                    {filteredSingle.length > 0 && (
+                      <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">ARTIST</th>
+                        <th scope="col">IMG</th>
+                        <th scope="col">Approve</th>
+                        <th scope="col">Reject</th>
+                      </tr>
+                    )}
                   </thead>
                   <tbody>
-                    {single?.map((singleSongs) => (
+                    {filteredSingle?.map((singleSongs) => (
                       <tr key={singleSongs._id}>
                         <th>{singleSongs.title}</th>
                         <th>{singleSongs?.artist?.artistName}</th>
@@ -224,18 +254,27 @@ const Admin = () => {
               </TabPanel>
               <TabPanel>
                 <h2>Album</h2>
+                <input
+                  type="text"
+                  className="form-control mb-3"
+                  placeholder="Search by title or artist name"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
                 <table class="table table-dark table-bordered ">
                   <thead>
-                    <tr>
-                      <th scope="col">Title</th>
-                      <th scope="col">ARTIST</th>
-                      <th scope="col">IMG</th>
-                      <th scope="col">Approve</th>
-                      <th scope="col">Reject</th>
-                    </tr>
+                    {filteredAlbums.length > 0 && (
+                      <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">ARTIST</th>
+                        <th scope="col">IMG</th>
+                        <th scope="col">Approve</th>
+                        <th scope="col">Reject</th>
+                      </tr>
+                    )}
                   </thead>
                   <tbody>
-                    {albums?.map((album) => (
+                    {filteredAlbums?.map((album) => (
                       <tr key={album._id}>
                         <th>{album?.albumName}</th>
                         <th>{album?.artist?.artistName}</th>
@@ -299,18 +338,27 @@ const Admin = () => {
               </TabPanel>
               <TabPanel>
                 <h2>EP</h2>
+                <input
+                  type="text"
+                  className="form-control mb-3"
+                  placeholder="Search by title or artist name"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
                 <table class="table table-dark table-bordered ">
                   <thead>
-                    <tr>
-                      <th scope="col">Title</th>
-                      <th scope="col">ARTIST</th>
-                      <th scope="col">IMG</th>
-                      <th scope="col">Approve</th>
-                      <th scope="col">Reject</th>
-                    </tr>
+                    {epFiltered.length > 0 && (
+                      <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">ARTIST</th>
+                        <th scope="col">IMG</th>
+                        <th scope="col">Approve</th>
+                        <th scope="col">Reject</th>
+                      </tr>
+                    )}
                   </thead>
                   <tbody>
-                    {eps?.map((ep) => (
+                    {epFiltered?.map((ep) => (
                       <tr key={ep._id}>
                         <th>{ep?.epName}</th>
                         <th>{ep?.artist?.artistName}</th>

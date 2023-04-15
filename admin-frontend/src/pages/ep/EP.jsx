@@ -22,7 +22,7 @@ const EP = () => {
       }
     };
     fetchEPs();
-  }, []);
+  }, [eps.length]);
 
   const [songs, setSongs] = React.useState([]);
   const allSongs = React.useEffect(() => {
@@ -60,10 +60,24 @@ const EP = () => {
     };
     fetchAllArtist();
   }, []);
+
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const epFiltered = eps.filter(
+    (ep) =>
+      ep.epName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      ep.artist.artistName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   return (
     <div className="container">
       <h1 className="text-light">EP</h1>
-      {eps?.length > 0 && (
+      <input
+        type="text"
+        className="form-control mb-3"
+        placeholder="Search by ep name or artist name"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      {epFiltered?.length > 0 && (
         <>
           <table class="table table-dark table-bordered ">
             <thead>
@@ -77,13 +91,13 @@ const EP = () => {
               </tr>
             </thead>
             <tbody>
-              {eps?.map((ep) => (
+              {epFiltered?.map((ep) => (
                 <tr key={ep._id}>
                   <th scope="row">{ep._id}</th>
                   <th>
                     <img src={ep.epArt} width={"50px"} alt="" />
                   </th>
-                  <th>{ep.epName}</th>
+                  <th>{ep?.epName}</th>
                   <th>{ep?.artist?.artistName}</th>
                   <th>{ep?.songList?.length}</th>
                   <th>

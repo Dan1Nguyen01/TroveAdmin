@@ -22,7 +22,14 @@ const Song = () => {
       }
     };
     fetchSongs();
-  }, []);
+  }, [songs.length]);
+  const [searchTerm, setSearchTerm] = React.useState("");
+
+  const filteredSongs = songs.filter(
+    (song) =>
+      song.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      song.artist.artistName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const [artistData, setArtistData] = React.useState([]);
   React.useEffect(() => {
@@ -77,7 +84,15 @@ const Song = () => {
     <div className="container">
       <h1 className="text-light">Song Manager</h1>
 
-      {songs?.length > 0 && (
+      <input
+        type="text"
+        className="form-control mb-3"
+        placeholder="Search by title or artist name"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+
+      {filteredSongs?.length > 0 && (
         <>
           <table class="table table-dark table-bordered ">
             <thead>
@@ -92,7 +107,7 @@ const Song = () => {
               </tr>
             </thead>
             <tbody>
-              {songs?.map((song) => (
+              {filteredSongs?.map((song) => (
                 <tr key={song._id}>
                   <th scope="row">{song._id}</th>
                   <th>

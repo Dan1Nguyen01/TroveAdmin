@@ -24,11 +24,23 @@ const Users = () => {
     fetchUsers();
   }, []);
 
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const filteredUser = users.filter(
+    (user) =>
+      user.displayName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   return (
     <div className="container">
       <h1 className="text-light">User Manager</h1>
-
-      {users?.length > 0 && (
+      <input
+        type="text"
+        className="form-control mb-3"
+        placeholder="Search by name or email"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)} // Update search term state
+      />
+      {filteredUser?.length > 0 && (
         <>
           <table class="table table-dark table-bordered ">
             <thead>
@@ -41,7 +53,7 @@ const Users = () => {
               </tr>
             </thead>
             <tbody>
-              {users?.map((user) => (
+              {filteredUser?.map((user) => (
                 <tr key={user._id}>
                   <th scope="row">{user._id}</th>
                   <th>

@@ -3,9 +3,9 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const validator = require("validator");
 const bcrypt = require("bcrypt");
-
+const config = require("../../config");
 const createToken = (id) => {
-  return jwt.sign({ _id: id }, process.env.SECRET, { expiresIn: "2h" });
+  return jwt.sign({ _id: id }, config.SECRET, { expiresIn: "2h" });
 };
 
 // admin login

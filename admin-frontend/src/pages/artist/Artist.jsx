@@ -4,6 +4,8 @@ import ArtistModal from "../../components/modals/artist modal/ArtistModal";
 const Artist = () => {
   const [artists, setArtist] = React.useState([]);
   const [errors, setErrors] = React.useState(null);
+  const [searchTerm, setSearchTerm] = React.useState(""); // Add state for search term
+
   const allArtists = React.useEffect(() => {
     const fetchAlbums = async () => {
       const response = await fetch("/api/artists", {
@@ -24,12 +26,26 @@ const Artist = () => {
     fetchAlbums();
   }, []);
 
+  // Filter artists based on search term
+  const filteredArtists = artists.filter(
+    (artist) =>
+      artist.artistName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      artist.email.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="container">
       <h1 className="text-light">Artist Manager</h1>
-      {artists?.length > 0 && (
+      <input
+        type="text"
+        className="form-control mb-3"
+        placeholder="Search by name or email"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)} // Update search term state
+      />
+      {filteredArtists?.length > 0 && (
         <>
-          <table class="table table-dark table-bordered ">
+          <table className="table table-dark table-bordered ">
             <thead>
               <tr>
                 <th scope="col">ID</th>
@@ -41,7 +57,7 @@ const Artist = () => {
               </tr>
             </thead>
             <tbody>
-              {artists?.map((artist) => (
+              {filteredArtists?.map((artist) => (
                 <tr key={artist._id}>
                   <th scope="row">{artist._id}</th>
                   <th>

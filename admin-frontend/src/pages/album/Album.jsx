@@ -22,7 +22,7 @@ const Album = () => {
       }
     };
     fetchAlbums();
-  }, []);
+  }, [albums.length]);
 
   const [songs, setSongs] = React.useState([]);
   const allSongs = React.useEffect(() => {
@@ -43,7 +43,7 @@ const Album = () => {
       }
     };
     fetchSongs();
-  }, []);
+  }, [songs.length]);
 
   const [artistData, setArtistData] = React.useState([]);
   React.useEffect(() => {
@@ -59,12 +59,28 @@ const Album = () => {
       }
     };
     fetchAllArtist();
-  }, []);
+  }, [artistData.length]);
+
+  const [searchTerm, setSearchTerm] = React.useState("");
+
+  const filteredAlbums = albums.filter(
+    (album) =>
+      album.albumName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      album.artist.artistName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="container">
       <h1 className="text-light">Album Manager</h1>
-      {albums?.length > 0 && (
+
+      <input
+        type="text"
+        className="form-control mb-3"
+        placeholder="Search by album name or artist"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      {filteredAlbums?.length > 0 && (
         <>
           <table class="table table-dark table-bordered ">
             <thead>
@@ -78,7 +94,7 @@ const Album = () => {
               </tr>
             </thead>
             <tbody>
-              {albums?.map((album) => (
+              {filteredAlbums?.map((album) => (
                 <tr key={album._id}>
                   <th scope="row">{album._id}</th>
                   <th>

@@ -3,9 +3,11 @@ const Song = require("../../models/songs/song");
 const Artist = require("../../models/artists/artist");
 const Album = require("../../models/albums/album");
 const nodemailer = require("nodemailer");
+const config = require("../../config");
+
 const getAllAlbum = async (req, res) => {
   try {
-    const albums = await Album.find({})
+    const albums = await Album.find({ isVerified: true })
       .populate("artist")
       .populate("featuredArtists")
       .populate("songList")
@@ -295,13 +297,13 @@ const approveAlbum = async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "Gmail",
       auth: {
-        user: process.env.GOOGLE_USER,
-        pass: process.env.GOOGLE_PASSWORD,
+        user: config.GOOGLE_USER,
+        pass: config.GOOGLE_PASSWORD,
       },
     });
 
     const mailOptions = {
-      from: process.env.AUTH_EMAIL_ACCOUNT,
+      from: config.AUTH_EMAIL_ACCOUNT,
       to: artistEmail,
       subject: "Song Approved",
       html: `
@@ -375,13 +377,13 @@ const rejectAlbum = async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "Gmail",
       auth: {
-        user: process.env.GOOGLE_USER,
-        pass: process.env.GOOGLE_PASSWORD,
+        user: config.GOOGLE_USER,
+        pass: config.GOOGLE_PASSWORD,
       },
     });
 
     const mailOptions = {
-      from: process.env.AUTH_EMAIL_ACCOUNT,
+      from: config.AUTH_EMAIL_ACCOUNT,
       to: artistEmail,
       subject: "Album Recjected",
       html: `
