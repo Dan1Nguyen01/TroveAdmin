@@ -12,6 +12,7 @@ import Home from "./pages/home/Home";
 import Artist from "./pages/artist/Artist";
 import Admin from "./pages/admin/Admin";
 import AdminLogin from "./pages/login/AdminLogin";
+import ErrorPage from "./pages/error/ErrorPage";
 import { useAuth } from "./context/AuthContext";
 import { Navigate } from "react-router-dom";
 const App = () => {
@@ -77,6 +78,10 @@ const App = () => {
                 path="/"
                 element={troveAdminToken ? <DashBoard /> : <AdminLogin />}
               />
+              <Route 
+                path="*" 
+                element={<ErrorPage />}>
+              </Route>
             </Routes>
           </Col>
         </Row>
