@@ -7,7 +7,7 @@ import Users from "./pages/user/Users";
 import Song from "./pages/song/Song";
 import Album from "./pages/album/Album";
 import EP from "./pages/ep/EP";
-import Collection from "./pages/collection/Collection";
+import Curated from "./pages/curated/Curated";
 import Home from "./pages/home/Home";
 import Artist from "./pages/artist/Artist";
 import Admin from "./pages/admin/Admin";
@@ -67,7 +67,7 @@ const App = () => {
               />
               <Route
                 path="/collection"
-                element={troveAdminToken ? <Collection /> : <Navigate to="/" />}
+                element={troveAdminToken ? <Curated /> : <Navigate to="/" />}
               />
               <Route
                 path="/admin"

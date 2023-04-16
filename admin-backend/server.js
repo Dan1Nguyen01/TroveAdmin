@@ -9,17 +9,15 @@ const songRoute = require("./routes/song-route/song-route");
 const curatedPlaylistRoute = require("./routes/curatedPlaylist/curatedPlaylist-route");
 const epRoute = require("./routes/ep-route/ep-route");
 const adminRoute = require("./routes/admin login/admin-login");
+const config = require("./config");
 const app = express();
 
-const config = require("./config");
 app.use(
   cors({
     origin: "http://localhost:3000",
     methods: ["GET", "PUT", "PATCH", "POST", "DELETE"],
   })
 );
-
-mongoose.set("strictQuery", true);
 
 mongoose.set("strictQuery", true);
 mongoose
@@ -43,13 +41,13 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api/admins", adminRoute);
-app.use("/api/users", userRoute);
-app.use("/api/albums", albumRoute);
-app.use("/api/songs", songRoute);
-app.use("/api/curated", curatedPlaylistRoute);
-app.use("/api/artists", artistRoute);
-app.use("/api/eps", epRoute);
+app.use(config.PREFIX + "admins", adminRoute);
+app.use(config.PREFIX + "users", userRoute);
+app.use(config.PREFIX + "albums", albumRoute);
+app.use(config.PREFIX + "songs", songRoute);
+app.use(config.PREFIX + "curated", curatedPlaylistRoute);
+app.use(config.PREFIX + "artists", artistRoute);
+app.use(config.PREFIX + "eps", epRoute);
 
 app.listen(config.PORT, "0.0.0.0", () => {
   console.log(`Listening to port`, config.PORT);

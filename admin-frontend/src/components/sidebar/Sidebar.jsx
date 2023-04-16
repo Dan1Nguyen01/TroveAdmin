@@ -70,7 +70,7 @@ function Sidebar() {
           to={"/collection"}
           activeClassName="active"
         >
-          <span>Collections</span>
+          <span>Curated Playlists</span>
         </NavLink>
 
         <NavLink
