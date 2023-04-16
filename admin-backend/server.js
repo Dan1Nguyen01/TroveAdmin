@@ -41,6 +41,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(config.PREFIX+"test", (req, res) => {
+  res.json({message: "Hello World!"});
+})
+
 app.use(config.PREFIX + "admins", adminRoute);
 app.use(config.PREFIX + "users", userRoute);
 app.use(config.PREFIX + "albums", albumRoute);

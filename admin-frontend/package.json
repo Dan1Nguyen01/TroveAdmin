@@ -1,5 +1,5 @@
 {
-  "proxy": "http://127.0.0.1:8499",
+  "proxy": "http://3.99.171.32:8499",
   "name": "admin-frontend",
   "version": "0.1.0",
   "private": true,

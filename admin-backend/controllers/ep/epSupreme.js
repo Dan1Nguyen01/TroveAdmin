@@ -294,7 +294,7 @@ const approveEP = async (req, res) => {
       to: artistEmail,
       subject: "EP Approved",
       html: `
-            <p>Hi ${ep?.artist?.artistName},</p>
+            <p>Hi ${ep.artist.artistName},</p>
             <p>Thank you for upload ep to TroveMusic!</p>
             <p>Your ep is ready to be served for listeners.</p>
             <p>The Trove Music Team</p>
@@ -374,7 +374,7 @@ const rejectEP = async (req, res) => {
       to: artistEmail,
       subject: "EP Recjected",
       html: `
-            <p>Hi ${ep?.artist?.artistName},</p>
+            <p>Hi ${ep.artist.artistName},</p>
             <p>Thank you for upload album to TroveMusic!</p>
             <p>Your album is not qualified for listeners.</p>
             <p>Here are the reasons: </p>

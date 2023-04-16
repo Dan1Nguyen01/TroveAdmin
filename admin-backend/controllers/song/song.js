@@ -470,7 +470,7 @@ const approveSong = async (req, res) => {
       to: artistEmail,
       subject: "Song Approved",
       html: `
-            <p>Hi ${foundSong?.artist?.artistName},</p>
+            <p>Hi ${foundSong.artist.artistName},</p>
             <p>Thank you for upload song to TroveMusic!</p>
             <p>The song "${foundSong.title}" has been approved.</p>
             <p>The Trove Music Team</p>
@@ -539,7 +539,7 @@ const rejectSingle = async (req, res) => {
       to: artistEmail,
       subject: "EP Recjected",
       html: `
-            <p>Hi ${song?.artist?.artistName},</p>
+            <p>Hi ${song.artist.artistName},</p>
             <p>Thank you for upload song to TroveMusic!</p>
             <p>Your song is not qualified for listeners.</p>
             <p>Here are the reasons: </p>
