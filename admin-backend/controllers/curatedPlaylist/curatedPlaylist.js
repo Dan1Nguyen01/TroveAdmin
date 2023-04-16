@@ -312,10 +312,12 @@ const createTopUserSongsPlaylist = async (user) => {
             songLimit = similarSongs;
 
             const name = "For You";
+            const image = "https://firebasestorage.googleapis.com/v0/b/helical-analyst-376421.appspot.com/o/images%2Ffor_ypu.png?alt=media&token=1b00e19a-ce4b-4700-9cb1-e7bc48c04cec";
 
             const curatedPlaylist = new CuratedPlaylist({
                 curatedPlaylistName: name,
                 curatedPlaylistBio: "Daily songs picked out for you!",
+                curatedPlaylistCoverUrl: image,
                 songList: songLimit,
                 isGenerated: true
             });
@@ -414,6 +416,7 @@ const createTopSongsPlaylist = async (req, res) => {
 
         let name = "";
         let index = 0;
+        const image = "https://firebasestorage.googleapis.com/v0/b/helical-analyst-376421.appspot.com/o/images%2FAsset_7.png?alt=media&token=999aeed3-b12b-4188-b687-64e969d76570";
 
         index = Math.floor(Math.random() * topSongNames.length);
         name = topSongNames[index];
@@ -423,6 +426,7 @@ const createTopSongsPlaylist = async (req, res) => {
         const curatedPlaylist = new CuratedPlaylist({
             curatedPlaylistName: name,
             curatedPlaylistBio: "Listen to the most popular songs on the platform!",
+            curatedPlaylistCoverUrl: image,
             songList: songLimit,
             isGenerated: true
         });
@@ -480,9 +484,12 @@ const createTopArtistPlaylist = async (req, res) => {
 
         const name = "Top Artists of the Day";
 
+        const image = "https://firebasestorage.googleapis.com/v0/b/helical-analyst-376421.appspot.com/o/images%2FAsset_0.png?alt=media&token=b324a47c-fb3a-49bd-8f75-f9ba57c4c8cc"
+
         const curatedPlaylist = new CuratedPlaylist({
             curatedPlaylistName: name,
             curatedPlaylistBio: "Listen to the most popular hits from the most popular artists!",
+            curatedPlaylistCoverUrl: image,
             songList: songLimit,
             isGenerated: true
         });
@@ -533,6 +540,7 @@ const createRandomPopPlaylist = async (req, res) => {
 
         let name = "";
         let index = 0;
+        const image  = "https://firebasestorage.googleapis.com/v0/b/helical-analyst-376421.appspot.com/o/images%2FAsset_3.png?alt=media&token=fc39f696-1467-4e99-9b1f-45f472c9a954";
 
         index = Math.floor(Math.random() * popNames.length);
         name = popNames[index];
@@ -542,6 +550,7 @@ const createRandomPopPlaylist = async (req, res) => {
         const curatedPlaylist = new CuratedPlaylist({
             curatedPlaylistName: name,
             curatedPlaylistBio: "Listen to a mix of random of pop songs!",
+            curatedPlaylistCoverUrl: image,
             songList: songLimit,
             isGenerated: true
         });
@@ -591,6 +600,7 @@ const createRandomRockPlaylist = async (req, res) => {
 
         let name = "";
         let index = 0;
+        const image = "https://firebasestorage.googleapis.com/v0/b/helical-analyst-376421.appspot.com/o/images%2FAsset_2.png?alt=media&token=89fd9c20-0594-4757-995f-d2e7aff8c6ac";
 
         index = Math.floor(Math.random() * rockNames.length);
         name = rockNames[index];
@@ -600,6 +610,7 @@ const createRandomRockPlaylist = async (req, res) => {
         const curatedPlaylist = new CuratedPlaylist({
             curatedPlaylistName: name,
             curatedPlaylistBio: "Listen to a mix of random of rock songs!",
+            curatedPlaylistCoverUrl: image,
             songList: songLimit,
             isGenerated: true
         });
@@ -649,6 +660,7 @@ const createRandomCountryPlaylist = async (req, res) => {
 
         let name = "";
         let index = 0;
+        const image = "https://firebasestorage.googleapis.com/v0/b/helical-analyst-376421.appspot.com/o/images%2FAsset_4_2.png?alt=media&token=42f210c8-267e-48a1-90e7-fbf1e1ced7ff";
 
         index = Math.floor(Math.random() * countryNames.length);
         name = countryNames[index];
@@ -658,6 +670,7 @@ const createRandomCountryPlaylist = async (req, res) => {
         const curatedPlaylist = new CuratedPlaylist({
             curatedPlaylistName: name,
             curatedPlaylistBio: "Listen to a mix of random of country songs!",
+            curatedPlaylistCoverUrl: image,
             songList: songLimit,
             isGenerated: true
         });
@@ -707,6 +720,7 @@ const createRandomHipHopPlaylist = async (req, res) => {
 
         let name = "";
         let index = 0;
+        const image = "https://firebasestorage.googleapis.com/v0/b/helical-analyst-376421.appspot.com/o/images%2FAsset_4.png?alt=media&token=dd058baf-947c-4204-8db2-b3eb534eaa8e";
 
         index = Math.floor(Math.random() * hipHopNames.length);
         name = hipHopNames[index];
@@ -716,6 +730,7 @@ const createRandomHipHopPlaylist = async (req, res) => {
         const curatedPlaylist = new CuratedPlaylist({
             curatedPlaylistName: name,
             curatedPlaylistBio: "Listen to a mix of random of hiphop songs!",
+            curatedPlaylistCoverUrl: image,
             songList: songLimit,
             isGenerated: true
         });
@@ -764,6 +779,7 @@ const createRandomPlaylist = async (req, res) => {
 
         let name = "";
         let index = 0;
+        const image = "https://firebasestorage.googleapis.com/v0/b/helical-analyst-376421.appspot.com/o/images%2FAsset_8.png?alt=media&token=56d1b0a1-1c1c-43bc-9f97-ad09fbeac891";
 
         index = Math.floor(Math.random() * randomNames.length);
         name = randomNames[index];
@@ -773,6 +789,7 @@ const createRandomPlaylist = async (req, res) => {
         const curatedPlaylist = new CuratedPlaylist({
             curatedPlaylistName: name,
             curatedPlaylistBio: "Listen to a mix of random of songs!",
+            curatedPlaylistCoverUrl: image,
             songList: songLimit,
             isGenerated: true
         });
