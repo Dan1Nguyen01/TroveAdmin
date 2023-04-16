@@ -531,7 +531,7 @@ import React, {
                     onChange={changeRange}
                   /> */}
                   <input
-                    className='fullscreen-progressBar'
+                    className='progressBar-ver2'
                     type='range'
                     ref={FCprogressBar}
                     defaultValue='0 '

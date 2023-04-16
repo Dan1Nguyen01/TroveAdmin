@@ -222,7 +222,7 @@
     
 }
 .fullscreen-playbtnstyle{
-    background: linear-gradient(15deg, #a37df0, #714bbd);
+    background: linear-gradient(15deg, #416ee9, #0034c4);
     border-radius: 50px;
     box-sizing: border-box;
     padding: 2px;
@@ -264,6 +264,14 @@
     margin-top: 5px;
     text-overflow: ellipsis;
     height: 60px;
+}
+.progressBar-ver2{
+    border-radius: 10px;
+    width: 100%;
+    /* outline:none; */
+    /* transform: translate(0px, -40%); */
+    
+    
 }
 .fullscreen-progressBar{
     appearance: none;

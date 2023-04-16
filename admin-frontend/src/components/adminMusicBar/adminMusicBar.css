@@ -234,11 +234,13 @@
     }
 
     .control-container>button {
+        display: none;
+        background-color: transparent;
         padding: 0;
         margin: auto;
         width: fit-content;
         color: white;
-
+border: none;
         align-items: center;
         display: flex;
         justify-content: center;
@@ -248,7 +250,7 @@
     .control-container>.playbtnstyle {
         height: 50px;
         width: 50px;
-        background-image: linear-gradient(to top, #5725d5, #8650F4);
+        background: linear-gradient(15deg, #96aff3, #0034c4);
         object-fit: fill;
         border-radius: 50%;
         font-size: 70px;
@@ -271,6 +273,7 @@
     }
     .rwBtn,
     .ffBtn{
+       
         transition: 0.10s;
     }
     .rwBtn:active{
@@ -513,8 +516,8 @@
     .fcBtn {
         color: rgb(255, 255, 255);
 
-        margin: 0.5vw;
-        font-size: large;
+        margin: 0.25vw;
+        font-size: medium;
         /* background-color: #a37df0; */
         /* position: absolute; */
         right: 0;
@@ -525,12 +528,12 @@
         border: #a37df072 2px solid;
         padding-left: 5px;
         border-radius: 5px;
-
+        background-color: #0034c4;
     }
 
     .fcBtn>.queueMusicIcon {
-        margin: 3px;
-        font-size: x-large;
+        margin: 2px;
+        font-size: large;
 
     }
 
