@@ -20,7 +20,7 @@ const App = () => {
   const troveAdminToken = localStorage.getItem("TroveAdminToken");
   return (
     <BrowserRouter>
-      <Container fluid className="bg-dark min-vh-100">
+      <Container fluid className="bg-secondary min-vh-100">
         <Row>
           {troveAdminToken ? (
             <Col

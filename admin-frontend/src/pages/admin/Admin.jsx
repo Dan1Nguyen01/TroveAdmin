@@ -58,63 +58,63 @@ const Admin = () => {
   //fetch unverified data
   const [single, setSingle] = React.useState([]);
 
+  const fetchUSingles = async () => {
+    const response = await fetch("/api/songs/unverified", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    const json = await response.json();
+    if (!response.ok) {
+      return;
+    }
+    if (response.ok) {
+      setSingle(json);
+    }
+  };
   React.useEffect(() => {
-    const fetchUSingles = async () => {
-      const response = await fetch("/api/songs/unverified", {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      });
-      const json = await response.json();
-      if (!response.ok) {
-        return;
-      }
-      if (response.ok) {
-        setSingle(json);
-      }
-    };
     fetchUSingles();
-  }, [single.length]);
+  }, [approveIsLoading]);
 
   const { approveAlbum, approveAlbumError, setApproveAlbumIsLoading } =
     useApproveAlbum();
   const [albums, setAlbums] = React.useState([]);
 
+  const fetchUAlbums = async () => {
+    const response = await fetch("/api/albums/unverified", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    const json = await response.json();
+    if (!response.ok) {
+      return;
+    }
+    if (response.ok) {
+      setAlbums(json);
+    }
+  };
   React.useEffect(() => {
-    const fetchUAlbums = async () => {
-      const response = await fetch("/api/albums/unverified", {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      });
-      const json = await response.json();
-      if (!response.ok) {
-        return;
-      }
-      if (response.ok) {
-        setAlbums(json);
-      }
-    };
     fetchUAlbums();
-  }, [albums.length]);
+  }, [setApproveAlbumIsLoading]);
 
   const [eps, setEPs] = React.useState([]);
   const { approveEP, approveEPError, setApproveEPIsLoading } = useApproveEP();
 
+  const fetchUEPs = async () => {
+    const response = await fetch("/api/eps/unverified", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    const json = await response.json();
+    if (!response.ok) {
+      return;
+    }
+    if (response.ok) {
+      setEPs(json);
+    }
+  };
   React.useEffect(() => {
-    const fetchUEPs = async () => {
-      const response = await fetch("/api/eps/unverified", {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      });
-      const json = await response.json();
-      if (!response.ok) {
-        return;
-      }
-      if (response.ok) {
-        setEPs(json);
-      }
-    };
     fetchUEPs();
-  }, [eps.length]);
+  }, [setApproveEPIsLoading]);
 
   const {
     rejectSingle,
@@ -238,9 +238,9 @@ const Admin = () => {
                               </Button>
                               <Button
                                 variant="danger"
-                                onClick={() =>
-                                  rejectSingle(singleSongs._id, singleMessage)
-                                }
+                                onClick={() => {
+                                  rejectSingle(singleSongs._id, singleMessage);
+                                }}
                               >
                                 Save Changes
                               </Button>
@@ -309,9 +309,9 @@ const Admin = () => {
                                   class="form-control"
                                   id="exampleFormControlTextarea1"
                                   rows="3"
-                                  onChange={(e) =>
-                                    setAlbumMessage(e.target.value)
-                                  }
+                                  onChange={(e) => {
+                                    setAlbumMessage(e.target.value);
+                                  }}
                                   value={albumMessage}
                                 ></textarea>
                               </div>
@@ -371,6 +371,7 @@ const Admin = () => {
                             className="btn btn-success"
                             onClick={() => {
                               approveEP(ep._id);
+                              fetchUEPs();
                             }}
                           >
                             Approve
@@ -405,7 +406,10 @@ const Admin = () => {
                               </Button>
                               <Button
                                 variant="danger"
-                                onClick={() => rejectEP(ep._id, epMessage)}
+                                onClick={() => {
+                                  rejectEP(ep._id, epMessage);
+                                  fetchUEPs();
+                                }}
                               >
                                 Save Changes
                               </Button>
