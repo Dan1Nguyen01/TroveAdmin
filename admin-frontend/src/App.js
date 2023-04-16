@@ -14,6 +14,9 @@ import Admin from "./pages/admin/Admin";
 import AdminLogin from "./pages/login/AdminLogin";
 import { useAuth } from "./context/AuthContext";
 import { Navigate } from "react-router-dom";
+
+import AdminMusicBar from "./components/adminMusicBar/adminMusicBar";
+
 const App = () => {
   const { authAdmin, isLoggedIn } = useAuth();
 
@@ -79,7 +82,10 @@ const App = () => {
               />
             </Routes>
           </Col>
-        </Row>
+          <Col>
+          <AdminMusicBar/>
+          </Col>
+        </Row>  
       </Container>
     </BrowserRouter>
   );

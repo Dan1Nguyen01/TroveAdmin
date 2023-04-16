@@ -14,7 +14,7 @@ function Sidebar() {
   return (
     <div className="bg-white sidebar p-2">
       <div className="m-2">
-        <span className="brand-name fs-4">Trove Music for Admin</span>
+        <span className="brand-name fs-4"><strong>Trove </strong>Admin</span>
       </div>
       <hr className="text-dark" />
       <div className="list-group list-group-flush">
@@ -78,7 +78,7 @@ function Sidebar() {
           to={"/admin"}
           activeClassName="active"
         >
-          <span>Request Musics</span>
+          <span>Music Verification</span>
         </NavLink>
 
         <button className="btn btn-dark mt-3" onClick={handleSignout}>

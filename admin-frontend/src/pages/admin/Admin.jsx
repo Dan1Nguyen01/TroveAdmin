@@ -12,6 +12,7 @@ import { useApproveEP } from "../../hooks/approve/useApproveEP";
 import { useRejectSingle } from "../../hooks/reject/useRejectSingle";
 import { useRejectAlbum } from "../../hooks/reject/useRejectAlbum";
 import { useRejectEP } from "../../hooks/reject/useRejectEP";
+import { MusicContext } from '../../context/MusicContext';
 
 const Admin = () => {
   const [email, setEmail] = useState("");
@@ -20,6 +21,33 @@ const Admin = () => {
   const [error, setError] = useState(null);
 
   const [show, setShow] = useState(false);
+  const {
+    displayMusicBar,
+    updateDisplayMusicBar,
+
+    currentSong,
+    updateCurrentSong,
+
+    play_list,
+    play_listPosition,
+    updatePlay_list,
+    clearPlay_list,
+    updatePlay_listPosition,
+
+    queue,
+    queuePosition,
+    advanceQueue,
+    addToQueue,
+    updateQueuePosition,
+    clearQueue,
+
+    loopLevel,
+    updateLoopLevel,
+
+    isPlay_Global,
+    toggleIsPlay_G,
+    setIsPlay_Global,
+  } = React.useContext(MusicContext)
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -155,7 +183,12 @@ const Admin = () => {
       ep.epName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       ep.artist.artistName.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
+React.useEffect(() => {
+    console.log(displayMusicBar)
+  if(displayMusicBar == false){
+    updateDisplayMusicBar(true);
+  }
+},[])
   return (
     <>
       <Container>
