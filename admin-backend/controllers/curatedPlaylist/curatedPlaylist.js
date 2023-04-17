@@ -120,7 +120,7 @@ const generateCuratedPlaylists = async (req, res) => {
 
         await createRandomPlaylist();
 
-        return res.status(201).json({ msg: "curated playlists created!" });
+        
 
     } catch (err) {
         console.log(err);
@@ -187,7 +187,7 @@ const createTopSongsPlaylist = async (req, res) => {
 
     } catch (err) {
         console.log(err);
-        res.status(400).json({ message: err.message });
+        res.status(400).json({ err: err.message });
     }
 }
 
@@ -250,7 +250,7 @@ const createTopArtistPlaylist = async (req, res) => {
 
     } catch (err) {
         console.log(err);
-        res.status(400).json({ message: err.message });
+        res.status(400).json({ err: err.message });
     }
 }
 
@@ -310,7 +310,7 @@ const createRandomPopPlaylist = async (req, res) => {
         return curatedPlaylist;
     } catch (err) {
         console.log(err);
-        res.status(400).json({ message: err.message });
+        res.status(400).json({ err: err.message });
     }
 }
 
@@ -370,7 +370,7 @@ const createRandomRockPlaylist = async (req, res) => {
         return curatedPlaylist;
     } catch (err) {
         console.log(err);
-        res.status(400).json({ message: err.message });
+        res.status(400).json({ err: err.message });
     }
 }
 
@@ -490,7 +490,7 @@ const createRandomHipHopPlaylist = async (req, res) => {
         return curatedPlaylist;
     } catch (err) {
         console.log(err);
-        res.status(400).json({ message: err.message });
+        res.status(400).json({ err: err.message });
     }
 }
 
@@ -549,7 +549,7 @@ const createRandomPlaylist = async (req, res) => {
         return curatedPlaylist;
     } catch (err) {
         console.log(err);
-        res.status(400).json({ message: err.message });
+        res.status(400).json({ err: err.message });
     }
 }
 
@@ -611,7 +611,7 @@ const updateCuratedPlaylist = async (req, res) => {
         res.status(200).json(curatedPlaylistUpdate);
     } catch (err) {
         console.log(err);
-        res.status(400).json({ message: err.message });
+        res.status(400).json({ err: err.message });
     }
 };
 
@@ -632,7 +632,7 @@ const deleteCuratedPlaylist = async (req, res) => {
         res.status(200).json({ msg: "curatedPlaylist deleted" });
     } catch (err) {
         console.log(err);
-        res.status(400).json({ message: err.message });
+        res.status(400).json({ err: err.message });
     }
 };
 
