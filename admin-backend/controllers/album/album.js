@@ -284,6 +284,10 @@ const approveAlbum = async (req, res) => {
       .populate("featuredArtists")
       .populate("songList");
 
+
+      if(!album){
+        return res.status(404).json({ error: "Album is not available" });
+      }
     album.isVerified = true;
     albumSongs = album.songList;
 
@@ -307,7 +311,7 @@ const approveAlbum = async (req, res) => {
       to: artistEmail,
       subject: "Song Approved",
       html: `
-            <p>Hi ${album?.artist?.artistName},</p>
+            <p>Hi ${album.artist.artistName},</p>
             <p>Thank you for upload album to TroveMusic!</p>
             <p>Your album is ready to be served for listeners.</p>
             <p>The Trove Music Team</p>
@@ -387,7 +391,7 @@ const rejectAlbum = async (req, res) => {
       to: artistEmail,
       subject: "Album Recjected",
       html: `
-            <p>Hi ${album?.artist?.artistName},</p>
+            <p>Hi ${album.artist.artistName},</p>
             <p>Thank you for upload album to TroveMusic!</p>
             <p>Your album is not qualified for listeners.</p>
             <p>Here are the reasons: </p>
