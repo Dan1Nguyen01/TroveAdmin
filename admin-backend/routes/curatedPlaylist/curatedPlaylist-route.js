@@ -30,7 +30,7 @@ router.patch('/:id', updateCuratedPlaylist);
 
 router.delete('/:id', deleteCuratedPlaylist);
 
-cron.schedule("0 0 * * *", async () => {
+cron.schedule("0 0 * * *", async (req, res) => {
     try {
         await CuratedPlaylist.deleteMany({ isGenerated: true });
         await generateCuratedPlaylists();
