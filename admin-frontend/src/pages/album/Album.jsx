@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
 import AlbumModal from "../../components/modals/album modal/AlbumModal";
+import { MusicContext } from '../../context/MusicContext';
 
 const Album = () => {
   const [albums, setAlbums] = React.useState([]);
@@ -68,7 +69,22 @@ const Album = () => {
       album.albumName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       album.artist.artistName.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  const {
+    displayMusicBar,
+    updateDisplayMusicBar,
 
+    currentSong,
+    updateCurrentSong,
+    isPlay_Global,
+    toggleIsPlay_G,
+    setIsPlay_Global,
+  } = React.useContext(MusicContext)
+
+React.useEffect(() => {
+    if(displayMusicBar == false){
+      updateDisplayMusicBar(true);
+    }
+  },[]);
   return (
     <div className="container">
       <h1 className="text-light">Album Manager</h1>

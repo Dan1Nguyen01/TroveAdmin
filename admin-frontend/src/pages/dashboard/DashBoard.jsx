@@ -8,11 +8,23 @@ import "./dashboard.css";
 import { RiUserSmileFill, RiAlbumFill } from "react-icons/ri";
 import { GiLoveMystery, GiLoveSong, GiMusicalNotes } from "react-icons/gi";
 import { TbAlbum } from "react-icons/tb";
+import { MusicContext } from '../../context/MusicContext';
 
 function DashBoard() {
+  
   const [users, setUsers] = React.useState([]);
   const [usersData, setUserData] = React.useState([]);
   const [errors, setErrors] = React.useState(null);
+  const {
+    displayMusicBar,
+    updateDisplayMusicBar,
+
+    currentSong,
+    updateCurrentSong,
+    isPlay_Global,
+    toggleIsPlay_G,
+    setIsPlay_Global,
+  } = React.useContext(MusicContext)
   const allUsers = React.useEffect(() => {
     const fetchUsers = async () => {
       const response = await fetch("/api/users", {
@@ -171,7 +183,12 @@ function DashBoard() {
     },
     // { header: "Collections", total: .length, url: "/ep", icon: "" },
   ];
-
+  React.useEffect(() => {
+    if(displayMusicBar == true){
+      setIsPlay_Global(false);
+      updateDisplayMusicBar(false);
+    }
+  },[]);
   return (
     <div className="">
       <h1>DashBoard</h1>

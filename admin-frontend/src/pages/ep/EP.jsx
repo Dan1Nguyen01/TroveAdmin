@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
 import EPModal from "../../components/modals/ep modal/EPModal";
+import { MusicContext } from '../../context/MusicContext';
 
 const EP = () => {
   const [eps, setEPs] = React.useState([]);
@@ -67,6 +68,23 @@ const EP = () => {
       ep.epName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       ep.artist.artistName.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const {
+    displayMusicBar,
+    updateDisplayMusicBar,
+
+    currentSong,
+    updateCurrentSong,
+    isPlay_Global,
+    toggleIsPlay_G,
+    setIsPlay_Global,
+  } = React.useContext(MusicContext)
+
+React.useEffect(() => {
+    if(displayMusicBar == false){
+      updateDisplayMusicBar(true);
+    }
+  },[]);
   return (
     <div className="container">
       <h1 className="text-light">EP</h1>

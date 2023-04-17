@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
 import SongModal from "../../components/modals/song modal/SongModal";
+import { MusicContext } from '../../context/MusicContext';
 
 const Song = () => {
   const [songs, setSongs] = React.useState([]);
@@ -79,7 +80,23 @@ const Song = () => {
     };
     fetchAllEP();
   }, []);
+  
+  const {
+    displayMusicBar,
+    updateDisplayMusicBar,
 
+    currentSong,
+    updateCurrentSong,
+    isPlay_Global,
+    toggleIsPlay_G,
+    setIsPlay_Global,
+  } = React.useContext(MusicContext)
+
+React.useEffect(() => {
+    if(displayMusicBar == false){
+      updateDisplayMusicBar(true);
+    }
+  },[]);
   return (
     <div className="container">
       <h1 className="text-light">Song Manager</h1>

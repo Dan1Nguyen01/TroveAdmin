@@ -1,5 +1,6 @@
 import React from "react";
 import ArtistModal from "../../components/modals/artist modal/ArtistModal";
+import { MusicContext } from '../../context/MusicContext';
 
 const Artist = () => {
   const [artists, setArtist] = React.useState([]);
@@ -25,14 +26,30 @@ const Artist = () => {
     };
     fetchAlbums();
   }, []);
-
+ 
+  const {
+      displayMusicBar,
+      updateDisplayMusicBar,
+  
+      currentSong,
+      updateCurrentSong,
+      isPlay_Global,
+      toggleIsPlay_G,
+      setIsPlay_Global,
+    } = React.useContext(MusicContext)
+  
   // Filter artists based on search term
   const filteredArtists = artists.filter(
     (artist) =>
       artist.artistName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       artist.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
+  React.useEffect(() => {
+    if(displayMusicBar == true){
+      setIsPlay_Global(false);
+      updateDisplayMusicBar(false);
+    }
+  },[]);
   return (
     <div className="container">
       <h1 className="text-light">Artist Manager</h1>

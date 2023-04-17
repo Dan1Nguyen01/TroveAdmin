@@ -184,7 +184,6 @@ const Admin = () => {
       ep.artist.artistName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 React.useEffect(() => {
-    console.log(displayMusicBar)
   if(displayMusicBar == false){
     updateDisplayMusicBar(true);
   }
