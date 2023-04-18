@@ -1,0 +1,14 @@
+.songId{
+    font-size: small;
+    opacity: 0.8;
+    margin: 0;
+    border-bottom: 2px solid blue;
+    margin-bottom: 2px;
+}
+.adminhtmlPlayer{
+    padding: 5px;
+    /* background-color: black; */
+}
+.tableRow{
+    margin: 0;
+}
