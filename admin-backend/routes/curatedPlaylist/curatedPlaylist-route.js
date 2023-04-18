@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const cron = require("node-cron");
+//const cron = require("node-cron");
 const CuratedPlaylist = require("../../models/curatedPlaylists/curatedPlaylist");
 
 
@@ -30,15 +30,15 @@ router.patch('/:id', updateCuratedPlaylist);
 
 router.delete('/:id', deleteCuratedPlaylist);
 
-cron.schedule("0 0 * * 0", async (req, res) => {
-    try {
-        await CuratedPlaylist.deleteMany({ isGenerated: true });
-        await generateCuratedPlaylists();
-        console.log("generated curated playlists!");
-    } catch (err) {
-        console.log(err);
-        res.status(400).json({ err: err.message });
-    }
-});
+// cron.schedule("* * * * *", async (req, res) => {
+//     try {
+//         await CuratedPlaylist.deleteMany({ isGenerated: true });
+//         await generateCuratedPlaylists();
+//         console.log("generated curated playlists!");
+//     } catch (err) {
+//         console.log(err);
+//         res.status(400).json({ err: err.message });
+//     }
+// });
 
 module.exports = router;
