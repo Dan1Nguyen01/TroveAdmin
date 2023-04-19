@@ -68,14 +68,13 @@ const updateArtist = async (req, res) => {
     artist.gender = gender;
 
     const isMatch = await bcrypt.compare(password, artist.password);
-    let salt;
+    const salt = await bcrypt.genSalt(10);
     let hash;
     if (!isMatch) {
-      salt = await bcrypt.genSalt(10);
       hash = await bcrypt.hash(password, salt);
       artist.password = hash;
     }
-    artist.password = password;
+
     await artist.save();
 
     res.status(200).json({ message: "Updated Artist successfully" });
