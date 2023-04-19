@@ -12,7 +12,7 @@ import { useApproveEP } from "../../hooks/approve/useApproveEP";
 import { useRejectSingle } from "../../hooks/reject/useRejectSingle";
 import { useRejectAlbum } from "../../hooks/reject/useRejectAlbum";
 import { useRejectEP } from "../../hooks/reject/useRejectEP";
-import { MusicContext } from '../../context/MusicContext';
+import { MusicContext } from "../../context/MusicContext";
 
 const Admin = () => {
   const [email, setEmail] = useState("");
@@ -47,7 +47,7 @@ const Admin = () => {
     isPlay_Global,
     toggleIsPlay_G,
     setIsPlay_Global,
-  } = React.useContext(MusicContext)
+  } = React.useContext(MusicContext);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -101,7 +101,7 @@ const Admin = () => {
   };
   React.useEffect(() => {
     fetchUSingles();
-  }, [approveIsLoading]);
+  }, [approveIsLoading || rejectAlbumIsLoading]);
 
   const { approveAlbum, approveAlbumError, setApproveAlbumIsLoading } =
     useApproveAlbum();
@@ -122,7 +122,7 @@ const Admin = () => {
   };
   React.useEffect(() => {
     fetchUAlbums();
-  }, [setApproveAlbumIsLoading]);
+  }, [approveIsLoading || rejectAlbumIsLoading]);
 
   const [eps, setEPs] = React.useState([]);
   const { approveEP, approveEPError, setApproveEPIsLoading } = useApproveEP();
@@ -142,7 +142,7 @@ const Admin = () => {
   };
   React.useEffect(() => {
     fetchUEPs();
-  }, [setApproveEPIsLoading]);
+  }, [approveIsLoading || rejectAlbumIsLoading]);
 
   const {
     rejectSingle,
@@ -183,11 +183,11 @@ const Admin = () => {
       ep.epName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       ep.artist.artistName.toLowerCase().includes(searchTerm.toLowerCase())
   );
-React.useEffect(() => {
-  if(displayMusicBar == false){
-    updateDisplayMusicBar(true);
-  }
-},[])
+  React.useEffect(() => {
+    if (displayMusicBar == false) {
+      updateDisplayMusicBar(true);
+    }
+  }, []);
   return (
     <>
       <Container>
